@@ -1,65 +1,106 @@
-import Image from "next/image";
+import Link from "next/link";
 
-export default function Home() {
+export default function LandingPage() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <main className="relative min-h-screen overflow-hidden bg-black text-white flex items-center justify-center px-6">
+      
+      {/* Background effects */}
+      <div className="absolute inset-0">
+        {/* Base gradient */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-zinc-900 to-black" />
+
+        {/* Red glow left */}
+        <div className="absolute -top-32 -left-32 h-[400px] w-[400px] bg-red-700/30 rounded-full blur-[120px]" />
+
+        {/* Red glow right */}
+        <div className="absolute bottom-0 -right-32 h-[500px] w-[500px] bg-red-800/20 rounded-full blur-[140px]" />
+
+        {/* Grain / noise illusion */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.04)_1px,transparent_0)] bg-[size:24px_24px] opacity-20" />
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10 max-w-3xl text-center space-y-8">
+        
+        <h1 className="text-5xl sm:text-6xl font-extrabold leading-tight">
+          Roast Your Side Project{" "}
+          <span className="text-red-500">🔥</span>
+        </h1>
+
+        <p className="text-gray-400 text-lg">
+          A brutally honest AI that roasts your side project the way
+          senior developers do — no sugarcoating.
+        </p>
+
+        {/* CTA buttons */}
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <Link
+            href="/roast"
+            className="px-7 py-3 rounded-lg font-semibold transition
+              bg-red-700 hover:bg-red-800
+              shadow-[0_0_30px_rgba(255,0,0,0.35)]"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
+            ☢️ Roast My Project
+          </Link>
+
           <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            href="https://github.com"
             target="_blank"
-            rel="noopener noreferrer"
+            className="px-7 py-3 rounded-lg border border-gray-700
+              hover:bg-white/5 transition"
           >
-            Documentation
+            View Source
           </a>
         </div>
-      </main>
+
+        {/* Feature cards */}
+        <div className="pt-12 grid sm:grid-cols-3 gap-6 text-left">
+          <Feature
+            title="😄 Mild"
+            desc="Honest feedback without emotional damage."
+            glow="hover:shadow-[0_0_30px_rgba(59,130,246,0.3)]"
+          />
+          <Feature
+            title="🧠 Professional"
+            desc="Dry, passive-aggressive senior dev energy."
+            glow="hover:shadow-[0_0_30px_rgba(99,102,241,0.3)]"
+          />
+          <Feature
+            title="☢️ Apocalypse"
+            desc="No mercy. You asked for it."
+            glow="hover:shadow-[0_0_35px_rgba(255,0,0,0.45)]"
+            danger
+          />
+        </div>
+      </div>
+    </main>
+  );
+}
+
+function Feature({
+  title,
+  desc,
+  glow,
+  danger = false,
+}: {
+  title: string;
+  desc: string;
+  glow: string;
+  danger?: boolean;
+}) {
+  return (
+    <div
+      className={`
+        border rounded-xl p-5 transition-all duration-300
+        ${danger ? "border-red-700/60" : "border-gray-800"}
+        bg-black/40 backdrop-blur-sm
+        ${glow}
+      `}
+    >
+      <h3 className={`font-semibold mb-2 ${danger ? "text-red-500" : ""}`}>
+        {title}
+      </h3>
+      <p className="text-gray-400 text-sm">{desc}</p>
     </div>
   );
 }
