@@ -44,7 +44,7 @@ export default function LandingPage() {
           </Link>
 
           <a
-            href="https://github.com"
+            href="https://github.com/harjyoti12/RoastYourProject.git"
             target="_blank"
             className="px-7 py-3 rounded-lg border border-gray-700
               hover:bg-white/5 transition"

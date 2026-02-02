@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { roastProject } from "../actions";
+import { text } from "stream/consumers";
 
 
 
@@ -100,7 +101,7 @@ ${techStack || "Not specified"}
           <textarea
             rows={5}
             placeholder="What does your project do? What features does it have? Who is it for?"
-            className={`w-full p-3 rounded-lg border ${theme.border} bg-transparent focus:outline-none focus:ring-2 ${theme.ring}`}
+            className={`w-full p-3 ${theme.text} rounded-lg border ${theme.border} bg-transparent focus:outline-none focus:ring-2 ${theme.ring}`}
             value={projectDetails}
             onChange={(e) => setProjectDetails(e.target.value)}
           />
@@ -115,7 +116,7 @@ ${techStack || "Not specified"}
           <textarea
             rows={2}
             placeholder="Next.js, Firebase, Tailwind, etc."
-            className={`w-full p-3 rounded-lg border ${theme.border} bg-transparent focus:outline-none focus:ring-2 ${theme.ring}`}
+            className={`w-full p-3 rounded-lg border ${theme.text} ${theme.border} bg-transparent focus:outline-none focus:ring-2 ${theme.ring}`}
             value={techStack}
             onChange={(e) => setTechStack(e.target.value)}
           />
