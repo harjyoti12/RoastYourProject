@@ -157,7 +157,7 @@ ${techStack || "Not specified"}
         {/* Result */}
         {roast && (
           <div
-            className={`mt-6 p-4 rounded-lg border ${theme.border} whitespace-pre-wrap text-sm leading-relaxed`}
+            className={`mt-6 p-4 rounded-lg border ${theme.border} ${theme.text} whitespace-pre-wrap text-sm leading-relaxed`}
           >
             {roast}
           </div>
